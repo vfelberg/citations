@@ -36,3 +36,11 @@ jobs:
       # Build and test with Gradle
       - name: Build and test
         run: ./gradlew build
+
+      # Upload test results as an artifact
+      - name: Upload HTML Test Report
+        if: always() # Ensures the report is uploaded even if tests fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-report
+          path: build/reports/tests/test
